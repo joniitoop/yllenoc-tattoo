@@ -71,7 +71,7 @@ export default function MisTurnos() {
             />
             <button
               onClick={buscarTurnos}
-              className="bg-white text-black px-6 py-3 rounded-lg font-bold hover:scale-105 transition"
+              className="bg-white text-black px-6 py-3 rounded-lg font-bold"
             >
               Buscar
             </button>
@@ -83,20 +83,19 @@ export default function MisTurnos() {
         {turnos.length > 0 && (
           <div className="space-y-4">
             {turnos.map((t) => (
-              <div key={t.id} className="bg-zinc-900/80 border border-zinc-700 p-6 rounded-2xl">
-                <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+              <div key={t.id} className="bg-zinc-900/80 border p-6 rounded-2xl">
+                <div className="flex justify-between items-start">
                   <div>
                     <p className="text-2xl font-bold">{t.nombre}</p>
                     <p className="text-zinc-400 mt-1">📅 {t.fecha}</p>
                     <p className="text-zinc-400">⏰ {t.hora}</p>
-                    <p className="text-sm text-zinc-500 mt-1">Código: {t.codigo_cancelacion?.slice(0, 8)}</p>
                   </div>
                   {t.estado !== "cancelado" && (
                     <button
                       onClick={() => cancelarTurno(t.id, t.codigo_cancelacion, t.fecha, t.hora, t.email, t.nombre)}
-                      className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition"
+                      className="bg-red-600 px-4 py-2 rounded"
                     >
-                      Cancelar turno
+                      Cancelar
                     </button>
                   )}
                 </div>
@@ -110,7 +109,7 @@ export default function MisTurnos() {
         )}
 
         <div className="mt-8 text-center">
-          <a href="/" className="text-zinc-400 hover:text-white transition">← Volver al inicio</a>
+          <a href="/" className="text-zinc-400 hover:text-white">← Volver al inicio</a>
         </div>
       </div>
     </div>
