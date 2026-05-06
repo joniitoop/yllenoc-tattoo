@@ -50,39 +50,66 @@ export default function Home() {
           to: email,
           subject: "Reserva confirmada - Yllenoc Tattoo",
           html: `
-            <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 550px; margin: 0 auto; background-color: #f9f9f9; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 550px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+              
               <div style="background-color: #000000; padding: 24px; text-align: center;">
                 <h1 style="color: #ffffff; margin: 0; font-size: 24px; letter-spacing: 2px;">YLLENOC TATTOO</h1>
                 <p style="color: #cccccc; margin: 8px 0 0 0;">Arte en piel</p>
               </div>
+              
+              <!-- AVISO IMPORTANTE: REVISAR SPAM -->
+              <div style="background-color: #e8f0fe; padding: 16px; text-align: center; border-bottom: 1px solid #d0e0f0;">
+                <p style="color: #1a73e8; margin: 0 0 5px 0; font-weight: bold;">
+                  ¿No ves este correo en tu bandeja de entrada?
+                </p>
+                <p style="color: #666666; margin: 0; font-size: 13px;">
+                  Revisa tu carpeta de <strong style="color: #1a73e8;">Correo no deseado</strong> o <strong style="color: #1a73e8;">Spam</strong>.<br>
+                  Marcá nuestro correo como <strong>"No es spam"</strong> para recibir futuros emails correctamente.
+                </p>
+              </div>
+              
               <div style="padding: 32px;">
                 <h2 style="color: #333333; margin: 0 0 8px 0; font-size: 22px;">Reserva confirmada</h2>
                 <p style="color: #666666; margin: 0 0 32px 0; border-bottom: 1px solid #eeeeee; padding-bottom: 16px;">Tu turno ha sido agendado correctamente</p>
-                <div style="background-color: #f0f0f0; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+                
+                <div style="background-color: #f5f5f5; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
                   <h3 style="color: #333333; margin: 0 0 16px 0; font-size: 16px;">Datos de la reserva</h3>
+                  
                   <div style="margin-bottom: 12px;">
                     <span style="color: #999999; font-size: 12px;">Código</span>
                     <p style="color: #333333; margin: 4px 0 0 0; font-family: monospace; font-size: 14px;">${codigo.slice(0, 8).toUpperCase()}</p>
                   </div>
+                  
                   <div style="margin-bottom: 12px;">
                     <span style="color: #999999; font-size: 12px;">Horario</span>
                     <p style="color: #333333; margin: 4px 0 0 0; font-weight: 500;">${fechaFormateada} - ${hora}</p>
                   </div>
+                  
                   <div style="margin-bottom: 12px;">
                     <span style="color: #999999; font-size: 12px;">Cliente</span>
                     <p style="color: #333333; margin: 4px 0 0 0;">${nombre}</p>
                   </div>
+                  
                   <div style="margin-bottom: 12px;">
                     <span style="color: #999999; font-size: 12px;">Email</span>
                     <p style="color: #333333; margin: 4px 0 0 0;">${email}</p>
                   </div>
                 </div>
+                
                 <div style="text-align: center;">
-                  <a href="/mis-turnos" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 500; margin-bottom: 16px;">Ver mis reservas</a>
+                  <a href="https://yllenoc-tattoo.vercel.app/mis-turnos" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 500; margin-bottom: 16px;">Ver mis reservas</a>
                   <p style="color: #999999; font-size: 12px; margin: 0;">¿Necesitas cancelar? Usá el código: <strong style="color: #333;">${codigo.slice(0, 8).toUpperCase()}</strong></p>
                 </div>
+
+                <!-- Botón para agregar a contactos -->
+                <div style="background-color: #f0f7f0; padding: 16px; text-align: center; border-radius: 8px; margin-top: 24px;">
+                  <p style="color: #2e7d32; margin: 0; font-size: 13px;">
+                    ✅ Para asegurarte de recibir nuestros emails, agrega <strong>norokzxkpo22@gmail.com</strong> a tu libreta de direcciones.
+                  </p>
+                </div>
               </div>
-              <div style="background-color: #f0f0f0; padding: 16px; text-align: center; border-top: 1px solid #e0e0e0;">
+              
+              <div style="background-color: #f5f5f5; padding: 16px; text-align: center; border-top: 1px solid #e0e0e0;">
                 <p style="color: #999999; font-size: 11px; margin: 0;">Yllenoc Tattoo · Arte en piel</p>
                 <p style="color: #999999; font-size: 11px; margin: 8px 0 0 0;">Este correo es generado automáticamente, por favor no responder.</p>
               </div>
@@ -145,7 +172,8 @@ export default function Home() {
       console.error("Error al guardar:", error)
       alert("Error al guardar: " + error.message)
     } else {
-      alert("Turno reservado correctamente")
+      // Mostrar popup con instrucciones para revisar SPAM
+      alert("✅ Turno reservado correctamente\n\n📧 Se ha enviado un correo de confirmación a:\n" + form.email + "\n\n⚠️ IMPORTANTE: Si no ves el correo en tu bandeja de entrada, revisá la carpeta de SPAM o CORREO NO DESEADO.\n\n✅ Agregá nuestro remitente a tu libreta de direcciones para recibir futuros emails correctamente.")
       
       await enviarEmailConfirmacion(form.email, form.nombre, form.fecha, form.hora, codigoCancelacion)
       

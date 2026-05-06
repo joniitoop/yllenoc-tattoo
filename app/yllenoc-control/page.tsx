@@ -85,7 +85,6 @@ export default function Admin() {
     <div className="bg-gradient-to-b from-black to-zinc-900 text-white min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
         
-        {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b border-zinc-800">
           <div>
             <h1 className="text-3xl font-bold">Yllenoc Tattoo</h1>
@@ -102,7 +101,6 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* Estadísticas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-zinc-800/50 p-4 rounded-xl text-center">
             <p className="text-2xl font-bold text-green-400">{turnos.length}</p>
@@ -110,7 +108,7 @@ export default function Admin() {
           </div>
           <div className="bg-zinc-800/50 p-4 rounded-xl text-center">
             <p className="text-2xl font-bold text-blue-400">
-              {turnos.filter(t => t.fecha >= new Date().toISOString().split("T")[0]).length}
+              {turnos.filter(t => t.fecha >= new Date().toISOString().split("T")[0] && t.estado !== "cancelado").length}
             </p>
             <p className="text-zinc-400">Turnos pendientes</p>
           </div>
@@ -124,7 +122,6 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* Lista de turnos */}
         <h2 className="text-2xl font-bold mb-4">Lista de turnos</h2>
 
         {cargando && <p className="text-center py-10">Cargando turnos...</p>}
