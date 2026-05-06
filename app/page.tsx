@@ -5,6 +5,7 @@ import { supabase } from "../lib/supabase"
 import { motion } from "framer-motion"
 import Calendar from "react-calendar"
 import "react-calendar/dist/Calendar.css"
+import type { Value } from "react-calendar/dist/cjs/shared/types"
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
@@ -78,7 +79,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div style="text-align: center;">
-                  <a href="http://localhost:3000/mis-turnos" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 500; margin-bottom: 16px;">Ver mis reservas</a>
+                  <a href="/mis-turnos" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 500; margin-bottom: 16px;">Ver mis reservas</a>
                   <p style="color: #999999; font-size: 12px; margin: 0;">¿Necesitas cancelar? Usá el código: <strong style="color: #333;">${codigo.slice(0, 8).toUpperCase()}</strong></p>
                 </div>
               </div>
@@ -149,7 +150,6 @@ export default function Home() {
       
       await enviarEmailConfirmacion(form.email, form.nombre, form.fecha, form.hora, codigoCancelacion)
       
-      // RESETEAR COMPLETAMENTE EL FORMULARIO
       setForm({ 
         nombre: "", 
         edad: "", 
@@ -178,7 +178,6 @@ export default function Home() {
     "https://picsum.photos/id/105/400/400"
   ]
 
-  // Función para formatear fecha sin problemas de timezone
   const formatearFechaLocal = (date: Date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -186,10 +185,23 @@ export default function Home() {
     return `${year}-${month}-${day}`;
   };
 
+  const handleCalendarChange = (value: Value) => {
+    if (value && value instanceof Date) {
+      const formatted = formatearFechaLocal(value);
+      
+      if (fechaSeleccionada && formatearFechaLocal(fechaSeleccionada) === formatted) {
+        setFechaSeleccionada(null);
+        setForm({ ...form, fecha: "" });
+      } else {
+        setFechaSeleccionada(value);
+        setForm({ ...form, fecha: formatted });
+      }
+    }
+  };
+
   return (
     <div className="bg-gradient-to-b from-black via-zinc-900 to-black text-white min-h-screen font-sans">
 
-      {/* Hero con logo de fondo */}
       <div 
         className="relative h-[90vh] flex flex-col justify-center items-center text-center px-4 bg-black"
         style={{
@@ -227,7 +239,6 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Galeria */}
       <section id="galeria" className="max-w-7xl mx-auto px-4 py-20">
         <motion.div
           initial={{ opacity: 0 }}
@@ -262,7 +273,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Modal */}
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black/95 flex justify-center items-center z-50 backdrop-blur-sm"
@@ -280,7 +290,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Reserva */}
       <section id="reserva" className="bg-zinc-900 py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -295,24 +304,9 @@ export default function Home() {
 
           <div className="flex flex-col lg:flex-row gap-10 justify-center">
 
-            {/* Calendario corregido */}
             <div className="bg-black p-6 rounded-2xl shadow-2xl">
               <Calendar
-                onChange={(date: Date) => {
-                  // CORREGIDO: formatea la fecha correctamente sin problemas de timezone
-                  const formatted = formatearFechaLocal(date);
-                  
-                  // Verificar si es la misma fecha seleccionada
-                  if (fechaSeleccionada && formatearFechaLocal(fechaSeleccionada) === formatted) {
-                    // DESELECCIONAR
-                    setFechaSeleccionada(null);
-                    setForm({ ...form, fecha: "" });
-                  } else {
-                    // SELECCIONAR NUEVA FECHA
-                    setFechaSeleccionada(date);
-                    setForm({ ...form, fecha: formatted });
-                  }
-                }}
+                onChange={handleCalendarChange}
                 value={fechaSeleccionada}
                 tileClassName={({ date }) => {
                   const d = formatearFechaLocal(date);
@@ -334,7 +328,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Formulario */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full lg:w-96 bg-black p-8 rounded-2xl shadow-2xl">
               <h3 className="text-2xl font-bold mb-2">Complete sus datos</h3>
 
@@ -395,7 +388,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contacto */}
       <div className="max-w-7xl mx-auto py-16 px-4">
         <div className="flex flex-col md:flex-row justify-center gap-6 items-center flex-wrap">
           <a
@@ -421,7 +413,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="text-center text-zinc-500 py-8 border-t border-zinc-800">
         <p>© 2025 Yllenoc Tattoo · Todos los derechos reservados</p>
       </footer>
