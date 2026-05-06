@@ -185,6 +185,7 @@ export default function Home() {
     return `${year}-${month}-${day}`;
   };
 
+  // ✅ Función corregida para el calendario
   const handleCalendarChange = (value: Value) => {
     if (value && value instanceof Date) {
       const formatted = formatearFechaLocal(value);
