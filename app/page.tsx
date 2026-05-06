@@ -184,7 +184,6 @@ export default function Home() {
     return `${year}-${month}-${day}`;
   };
 
-  // Función corregida para el calendario (sin errores de tipos)
   const handleCalendarChange = (value: any) => {
     if (value && value instanceof Date) {
       const formatted = formatearFechaLocal(value);
@@ -402,13 +401,6 @@ export default function Home() {
             className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 hover:scale-105 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
           >
             Instagram
-          </a>
-
-          <a
-            href="/admin"
-            className="bg-zinc-700 hover:bg-zinc-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
-          >
-            Admin
           </a>
         </div>
       </div>
