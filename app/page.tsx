@@ -5,7 +5,6 @@ import { supabase } from "../lib/supabase"
 import { motion } from "framer-motion"
 import Calendar from "react-calendar"
 import "react-calendar/dist/Calendar.css"
-import type { Value } from "react-calendar/dist/cjs/shared/types"
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
@@ -185,8 +184,8 @@ export default function Home() {
     return `${year}-${month}-${day}`;
   };
 
-  // ✅ Función corregida para el calendario
-  const handleCalendarChange = (value: Value) => {
+  // Función corregida para el calendario (sin errores de tipos)
+  const handleCalendarChange = (value: any) => {
     if (value && value instanceof Date) {
       const formatted = formatearFechaLocal(value);
       
