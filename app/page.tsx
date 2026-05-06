@@ -51,67 +51,35 @@ export default function Home() {
           subject: "Reserva confirmada - Yllenoc Tattoo",
           html: `
             <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 550px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-              
               <div style="background-color: #000000; padding: 24px; text-align: center;">
                 <h1 style="color: #ffffff; margin: 0; font-size: 24px; letter-spacing: 2px;">YLLENOC TATTOO</h1>
                 <p style="color: #cccccc; margin: 8px 0 0 0;">Arte en piel</p>
               </div>
-              
-              <!-- AVISO IMPORTANTE: REVISAR SPAM -->
-              <div style="background-color: #e8f0fe; padding: 16px; text-align: center; border-bottom: 1px solid #d0e0f0;">
-                <p style="color: #1a73e8; margin: 0 0 5px 0; font-weight: bold;">
-                  ¿No ves este correo en tu bandeja de entrada?
-                </p>
-                <p style="color: #666666; margin: 0; font-size: 13px;">
-                  Revisa tu carpeta de <strong style="color: #1a73e8;">Correo no deseado</strong> o <strong style="color: #1a73e8;">Spam</strong>.<br>
-                  Marcá nuestro correo como <strong>"No es spam"</strong> para recibir futuros emails correctamente.
+              <div style="background-color: #e8f0fe; padding: 16px; text-align: center;">
+                <p style="color: #1a73e8; margin: 0; font-size: 13px;">
+                  📧 ¿No ves este correo? Revisa tu carpeta de <strong>Spam</strong> y marcalo como "No es spam".
                 </p>
               </div>
-              
               <div style="padding: 32px;">
                 <h2 style="color: #333333; margin: 0 0 8px 0; font-size: 22px;">Reserva confirmada</h2>
-                <p style="color: #666666; margin: 0 0 32px 0; border-bottom: 1px solid #eeeeee; padding-bottom: 16px;">Tu turno ha sido agendado correctamente</p>
-                
                 <div style="background-color: #f5f5f5; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
                   <h3 style="color: #333333; margin: 0 0 16px 0; font-size: 16px;">Datos de la reserva</h3>
-                  
                   <div style="margin-bottom: 12px;">
                     <span style="color: #999999; font-size: 12px;">Código</span>
-                    <p style="color: #333333; margin: 4px 0 0 0; font-family: monospace; font-size: 14px;">${codigo.slice(0, 8).toUpperCase()}</p>
+                    <p style="color: #333333; margin: 4px 0 0 0; font-family: monospace;">${codigo.slice(0, 8).toUpperCase()}</p>
                   </div>
-                  
                   <div style="margin-bottom: 12px;">
                     <span style="color: #999999; font-size: 12px;">Horario</span>
                     <p style="color: #333333; margin: 4px 0 0 0; font-weight: 500;">${fechaFormateada} - ${hora}</p>
                   </div>
-                  
                   <div style="margin-bottom: 12px;">
                     <span style="color: #999999; font-size: 12px;">Cliente</span>
                     <p style="color: #333333; margin: 4px 0 0 0;">${nombre}</p>
                   </div>
-                  
-                  <div style="margin-bottom: 12px;">
-                    <span style="color: #999999; font-size: 12px;">Email</span>
-                    <p style="color: #333333; margin: 4px 0 0 0;">${email}</p>
-                  </div>
                 </div>
-                
                 <div style="text-align: center;">
-                  <a href="https://yllenoc-tattoo.vercel.app/mis-turnos" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 500; margin-bottom: 16px;">Ver mis reservas</a>
-                  <p style="color: #999999; font-size: 12px; margin: 0;">¿Necesitas cancelar? Usá el código: <strong style="color: #333;">${codigo.slice(0, 8).toUpperCase()}</strong></p>
+                  <a href="https://yllenoc-tattoo.vercel.app/mis-turnos" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px;">Ver mis reservas</a>
                 </div>
-
-                <!-- Botón para agregar a contactos -->
-                <div style="background-color: #f0f7f0; padding: 16px; text-align: center; border-radius: 8px; margin-top: 24px;">
-                  <p style="color: #2e7d32; margin: 0; font-size: 13px;">
-                    ✅ Para asegurarte de recibir nuestros emails, agrega <strong>norokzxkpo22@gmail.com</strong> a tu libreta de direcciones.
-                  </p>
-                </div>
-              </div>
-              
-              <div style="background-color: #f5f5f5; padding: 16px; text-align: center; border-top: 1px solid #e0e0e0;">
-                <p style="color: #999999; font-size: 11px; margin: 0;">Yllenoc Tattoo · Arte en piel</p>
-                <p style="color: #999999; font-size: 11px; margin: 8px 0 0 0;">Este correo es generado automáticamente, por favor no responder.</p>
               </div>
             </div>
           `
@@ -147,7 +115,7 @@ export default function Home() {
     }
 
     if (edadNum < 18) {
-      alert("Usted es menor de edad. Necesita el consentimiento de un adulto. Sera redirigido al formulario.")
+      alert("Usted es menor de edad. Necesita el consentimiento de un adulto.")
       window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSda5W7ffjAnqciIv8OHmwEYEsQta2qoD2wWS0yvBbHfz8sv7Q/viewform"
       return
     }
@@ -172,18 +140,11 @@ export default function Home() {
       console.error("Error al guardar:", error)
       alert("Error al guardar: " + error.message)
     } else {
-      // Mostrar popup con instrucciones para revisar SPAM
-      alert("✅ Turno reservado correctamente\n\n📧 Se ha enviado un correo de confirmación a:\n" + form.email + "\n\n⚠️ IMPORTANTE: Si no ves el correo en tu bandeja de entrada, revisá la carpeta de SPAM o CORREO NO DESEADO.\n\n✅ Agregá nuestro remitente a tu libreta de direcciones para recibir futuros emails correctamente.")
+      alert("✅ Turno reservado correctamente\n\n📧 Se ha enviado un correo a:\n" + form.email + "\n\n⚠️ Si no lo ves, revisá la carpeta de SPAM.")
       
       await enviarEmailConfirmacion(form.email, form.nombre, form.fecha, form.hora, codigoCancelacion)
       
-      setForm({ 
-        nombre: "", 
-        edad: "", 
-        email: "", 
-        fecha: "", 
-        hora: "" 
-      })
+      setForm({ nombre: "", edad: "", email: "", fecha: "", hora: "" })
       setFechaSeleccionada(null)
       getTurnos()
     }
@@ -229,8 +190,9 @@ export default function Home() {
   return (
     <div className="bg-gradient-to-b from-black via-zinc-900 to-black text-white min-h-screen font-sans">
 
+      {/* Hero responsive */}
       <div 
-        className="relative h-[90vh] flex flex-col justify-center items-center text-center px-4 bg-black"
+        className="relative min-h-[60vh] md:h-[90vh] flex flex-col justify-center items-center text-center px-4 py-12 md:py-0 bg-black"
         style={{
           backgroundImage: "url('/tattoo logo.jpeg')",
           backgroundSize: "cover",
@@ -243,72 +205,74 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10"
+          className="relative z-10 w-full"
         >
-          <h1 className="text-7xl md:text-8xl font-black tracking-wider text-white drop-shadow-2xl">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wider text-white drop-shadow-2xl break-words">
             YLLENOC TATTOO
           </h1>
-          <p className="text-xl md:text-2xl text-zinc-200 mt-6 max-w-2xl mx-auto drop-shadow-lg">
+          <p className="text-lg sm:text-xl md:text-2xl text-zinc-200 mt-4 md:mt-6 max-w-2xl mx-auto drop-shadow-lg px-4">
             Arte en piel · Diseños unicos · Experiencia unica
           </p>
 
-          <div className="flex gap-4 mt-10 justify-center flex-wrap">
-            <a href="#reserva" className="bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-all duration-300 shadow-xl">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-10 justify-center items-center px-4">
+            <a href="#reserva" className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition-all duration-300 shadow-xl w-full sm:w-auto text-center">
               Reservar turno
             </a>
-            <a href="#galeria" className="border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300">
+            <a href="#galeria" className="border-2 border-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 w-full sm:w-auto text-center">
               Ver trabajos
             </a>
-            <a href="/mis-turnos" className="bg-zinc-700 hover:bg-zinc-600 px-8 py-4 rounded-full font-bold transition-all duration-300 shadow-xl">
+            <a href="/mis-turnos" className="bg-zinc-700 hover:bg-zinc-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold transition-all duration-300 shadow-xl w-full sm:w-auto text-center">
               Mis Turnos
             </a>
           </div>
         </motion.div>
       </div>
 
-      <section id="galeria" className="max-w-7xl mx-auto px-4 py-20">
+      {/* Galeria responsive */}
+      <section id="galeria" className="max-w-7xl mx-auto px-4 py-12 md:py-20">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-5xl font-bold mb-4">Mis trabajos</h2>
-          <div className="w-24 h-1 bg-white mx-auto"></div>
-          <p className="text-zinc-400 mt-4">Cada tatuaje es una obra unica</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Mis trabajos</h2>
+          <div className="w-16 md:w-24 h-1 bg-white mx-auto"></div>
+          <p className="text-zinc-400 mt-4 text-sm sm:text-base">Cada tatuaje es una obra unica</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {images.map((img, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1 }}
-              className="group relative overflow-hidden rounded-xl shadow-2xl cursor-pointer"
+              className="group relative overflow-hidden rounded-xl shadow-2xl cursor-pointer aspect-square"
               onClick={() => setSelectedImage(img)}
             >
               <img
                 src={img}
                 alt={`Trabajo ${i + 1}`}
-                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center p-4">
-                <span className="text-white font-bold">Ver detalle</span>
+                <span className="text-white font-bold text-sm sm:text-base">Ver detalle</span>
               </div>
             </motion.div>
           ))}
         </div>
       </section>
 
+      {/* Modal responsive */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black/95 flex justify-center items-center z-50 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/95 flex justify-center items-center z-50 p-4"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-4xl max-h-[90vh]">
+          <div className="relative max-w-[90vw] max-h-[90vh]">
             <img src={selectedImage} className="max-w-full max-h-[90vh] object-contain rounded-xl" />
             <button
-              className="absolute top-4 right-4 bg-white text-black w-10 h-10 rounded-full text-2xl hover:scale-110 transition"
+              className="absolute top-2 right-2 bg-white text-black w-8 h-8 sm:w-10 sm:h-10 rounded-full text-xl sm:text-2xl hover:scale-110 transition flex items-center justify-center"
               onClick={() => setSelectedImage(null)}
             >
               ✕
@@ -317,21 +281,23 @@ export default function Home() {
         </div>
       )}
 
-      <section id="reserva" className="bg-zinc-900 py-20 px-4">
+      {/* Reserva responsive */}
+      <section id="reserva" className="bg-zinc-900 py-12 md:py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-5xl font-bold mb-4">Reservar turno</h2>
-            <div className="w-24 h-1 bg-white mx-auto"></div>
-            <p className="text-zinc-400 mt-4">Elija fecha y horario</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Reservar turno</h2>
+            <div className="w-16 md:w-24 h-1 bg-white mx-auto"></div>
+            <p className="text-zinc-400 mt-4 text-sm sm:text-base">Elija fecha y horario</p>
           </motion.div>
 
-          <div className="flex flex-col lg:flex-row gap-10 justify-center">
+          <div className="flex flex-col lg:flex-row gap-6 md:gap-10 justify-center items-center lg:items-stretch">
 
-            <div className="bg-black p-6 rounded-2xl shadow-2xl">
+            {/* Calendario responsive */}
+            <div className="bg-black p-4 sm:p-6 rounded-2xl shadow-2xl w-full lg:w-auto">
               <Calendar
                 onChange={handleCalendarChange}
                 value={fechaSeleccionada}
@@ -347,16 +313,17 @@ export default function Home() {
                     ? "bg-red-600 text-white rounded-full"
                     : "bg-green-600 text-white rounded-full hover:bg-green-500";
                 }}
-                className="border-0 shadow-xl"
+                className="border-0 shadow-xl w-full"
                 minDate={new Date()}
               />
-              <p className="text-center text-zinc-500 text-sm mt-4">
+              <p className="text-center text-zinc-500 text-xs sm:text-sm mt-4">
                 {fechaSeleccionada ? `Fecha seleccionada: ${formatearFechaLocal(fechaSeleccionada)}` : "Seleccione una fecha"}
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full lg:w-96 bg-black p-8 rounded-2xl shadow-2xl">
-              <h3 className="text-2xl font-bold mb-2">Complete sus datos</h3>
+            {/* Formulario responsive */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-5 w-full lg:w-96 bg-black p-6 sm:p-8 rounded-2xl shadow-2xl">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-center">Complete sus datos</h3>
 
               <input
                 name="nombre"
@@ -364,7 +331,7 @@ export default function Home() {
                 value={form.nombre}
                 onChange={handleChange}
                 required
-                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition"
+                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition text-sm sm:text-base"
               />
 
               <select
@@ -372,7 +339,7 @@ export default function Home() {
                 value={form.edad}
                 onChange={handleChange}
                 required
-                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition"
+                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition text-sm sm:text-base"
               >
                 <option value="">Seleccionar edad</option>
                 {edades.map((edad) => (
@@ -389,7 +356,7 @@ export default function Home() {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition"
+                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition text-sm sm:text-base"
               />
 
               <select
@@ -397,7 +364,7 @@ export default function Home() {
                 value={form.hora}
                 onChange={handleChange}
                 required
-                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition"
+                className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-white transition text-sm sm:text-base"
               >
                 <option value="">Seleccionar hora</option>
                 {horas.map((h) => (
@@ -407,7 +374,7 @@ export default function Home() {
                 ))}
               </select>
 
-              <button type="submit" className="bg-gradient-to-r from-white to-gray-300 text-black p-4 rounded-lg font-bold text-lg hover:scale-105 transition-all duration-300 mt-4 shadow-xl">
+              <button type="submit" className="bg-gradient-to-r from-white to-gray-300 text-black p-4 rounded-lg font-bold text-base sm:text-lg hover:scale-105 transition-all duration-300 mt-4 shadow-xl">
                 Reservar turno
               </button>
             </form>
@@ -415,25 +382,27 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto py-16 px-4">
-        <div className="flex flex-col md:flex-row justify-center gap-6 items-center flex-wrap">
+      {/* Contacto responsive */}
+      <div className="max-w-7xl mx-auto py-12 md:py-16 px-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 items-center">
           <a
             href="https://wa.me/5491123754226?text=Hola%20quiero%20reservar%20un%20turno"
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+            className="bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all duration-300 shadow-xl w-full sm:w-auto text-center"
           >
             WhatsApp
           </a>
 
           <a
             href="https://www.instagram.com/yllenoc.tattoo/"
-            className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 hover:scale-105 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+            className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 hover:scale-105 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all duration-300 shadow-xl w-full sm:w-auto text-center"
           >
             Instagram
           </a>
         </div>
       </div>
 
-      <footer className="text-center text-zinc-500 py-8 border-t border-zinc-800">
+      {/* Footer responsive */}
+      <footer className="text-center text-zinc-500 py-6 md:py-8 border-t border-zinc-800 text-xs sm:text-sm px-4">
         <p>© 2025 Yllenoc Tattoo · Todos los derechos reservados</p>
       </footer>
 
